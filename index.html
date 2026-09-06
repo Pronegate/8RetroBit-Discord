@@ -447,6 +447,21 @@
   .age-gate-label input:focus-visible + .age-gate-box{ outline: 2px solid var(--accent2); outline-offset: 2px; }
   .age-gate-note{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faint); }
 
+  .rules-accept{
+    margin-top: 28px;
+    padding: 22px 26px;
+    background: var(--bg-panel);
+    border: 3px solid var(--accent2);
+    border-radius: var(--radius);
+    box-shadow: 0 0 24px var(--accent2-soft);
+    display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+  }
+  .rules-accept-note{ font-family: var(--font-mono); font-size: 0.78rem; color: var(--ink-faint); }
+  #acceptRulesBtn.is-accepted{
+    background: #3ddc71; border-color: #3ddc71; color: var(--bg);
+  }
+  #acceptRulesBtn.is-accepted:hover{ background: #3ddc71; }
+
   .cart{ cursor: pointer; user-select: none; }
   .cart:focus-visible{ outline: 2px solid var(--accent2); outline-offset: 3px; }
   .cart[aria-disabled="true"]{ opacity: 0.45; cursor: not-allowed; }
@@ -730,30 +745,28 @@
     <div class="about-grid">
       <div>
         <p>
-          Chi &egrave; nato negli anni '90 lo sa: quel rumore del modem che si connette, l'attesa
-          di un gioco che si carica da floppy, le cassette da riavvolgere con la matita infilata
-          nei buchi. Non lo dico per fare nostalgia da meme. 8RetroBit &egrave; nato letteralmente
-          cos&igrave; &mdash; con qualcuno che a 10 anni toglieva la batteria dal BIOS per fregare
-          la password che il padre aveva messo per limitare le ore su DOOM. Prima ancora di sapere
-          cosa fosse un processore, insomma. E da l&igrave; non ha pi&ugrave; smesso di smontare
-          le cose per capire come funzionano.
+          Chi &egrave; nato negli anni '90 lo sa: il rumore del modem che si connette, l'attesa
+          del gioco che carica da floppy, le cassette da riavvolgere con la matita nei buchi. Non
+          &egrave; nostalgia da meme, &egrave; quella vera. 8RetroBit nasce cos&igrave;, con uno
+          che a 4-5 anni toglieva la batteria dal BIOS per bypassare la password che suo padre
+          metteva per limitargli le ore su DOOM. Prima ancora di sapere cos'era un processore. E
+          da l&igrave; in poi non ha pi&ugrave; smesso di smontare le cose per capire come
+          funzionano.
         </p>
         <p>
-          Poi col tempo si &egrave; allargato. Qui dentro si parla tanto di
-          <strong>retrogaming</strong> quanto dell'ultimo <strong>tripla A</strong> appena uscito,
-          si smanetta col <strong>modding su Android</strong>, si scrive codice, si litiga
-          (bonariamente) su quale <strong>distro Linux</strong> sia la migliore, si seguono
-          <strong>progetti open source</strong> che qualcuno ha mollato a met&agrave; su GitHub.
-          Sembrano cose diverse ma in realt&agrave; no, &egrave; sempre la stessa curiosit&agrave;
-          che gira intorno a cose diverse.
+          Col tempo si &egrave; allargato. Si parla di <strong>retrogaming</strong> quanto
+          dell'ultimo <strong>tripla A</strong> appena uscito, si smanetta col
+          <strong>modding su Android</strong>, si scrive codice, si litiga bonariamente su quale
+          <strong>distro Linux</strong> sia la migliore, si seguono <strong>progetti open
+          source</strong> lasciati a met&agrave; su GitHub. Sembra roba diversa ma non lo &egrave;,
+          &egrave; sempre la stessa curiosit&agrave; applicata a cose diverse.
         </p>
         <p>
-          E poi c'&egrave; il resto, quello che conta di pi&ugrave; ma si spiega peggio: qui dentro
-          non c'&egrave; gente che ti guarda dall'alto in basso per quanto ne sai o da quanto tempo
-          ci sei. C'&egrave; una gerarchia, ok, serve per tenere in piedi le cose &mdash; ma alla
-          fine siamo in pochi, ci si conosce, e con gli anni &egrave; diventato pi&ugrave; un
-          gruppo di amici che un server Discord. Anche se nessuno lo dice mai cos&igrave;
-          apertamente.<span class="about-caret"></span>
+          Poi c'&egrave; il resto, quello che conta di pi&ugrave; e si spiega peggio. Qui dentro
+          nessuno ti guarda dall'alto in basso per quanto sai o da quanto tempo ci sei. Una
+          gerarchia c'&egrave;, serve per tenere in piedi le cose, ma siamo in pochi, ci si conosce
+          davvero, e con gli anni &egrave; diventato pi&ugrave; un gruppo di amici che un server.
+          Anche se nessuno lo direbbe mai cos&igrave; apertamente.<span class="about-caret"></span>
         </p>
       </div>
       <div>
@@ -768,12 +781,12 @@
         <div class="panel">
         <h3>LA TUA BUILD</h3>
         <p style="color:var(--ink-dim); font-size:0.86rem; margin-bottom:16px;">
-          Scegli le tue classi qui sotto, in &quot;Seleziona la tua classe&quot;: restano
-          equipaggiate anche se torni domani.
+          Le classi che scegli restano equipaggiate anche se torni domani.
         </p>
         <div class="build-tags" id="aboutClassesSummary">
           <span class="build-empty">Ancora nessuna classe equipaggiata</span>
         </div>
+        <a class="btn btn-sm" id="buildPanelLink" style="margin-top:16px;" href="#classi">SELEZIONA LA TUA CLASSE &rarr;</a>
         </div>
       </div>
     </div>
@@ -879,6 +892,32 @@
       <h2>GAME MANUAL</h2>
       <span class="section-tag">// stage_3</span>
     </div>
+    <div class="steps-bar" id="stepsBar">
+      <div class="step-item" data-step="age">
+        <span class="step-num">1</span>
+        <span class="step-label">Conferma 18+</span>
+      </div>
+      <div class="step-item" data-step="rules">
+        <span class="step-num">2</span>
+        <span class="step-label">Accetta regolamento</span>
+      </div>
+      <div class="step-item" data-step="class">
+        <span class="step-num">3</span>
+        <span class="step-label">Scegli una classe</span>
+      </div>
+      <div class="step-item" data-step="join">
+        <span class="step-num">4</span>
+        <span class="step-label">Entra nel server</span>
+      </div>
+    </div>
+    <div class="age-gate">
+      <label class="age-gate-label">
+        <input type="checkbox" id="ageCheckbox">
+        <span class="age-gate-box"></span>
+        Confermo di avere almeno 18 anni
+      </label>
+      <span class="age-gate-note">Passo 1 di 4 &mdash; richiesto per leggere e accettare il regolamento qui sotto</span>
+    </div>
     <p class="manual-intro">Prima di premere start, leggi le regole del gioco. Valgono per tutti, senza eccezioni &mdash; sono ci&ograve; che tiene in piedi 8RetroBit.</p>
     <div class="rules-table-wrap">
       <table class="rules-table">
@@ -944,31 +983,13 @@
         </tbody>
       </table>
     </div>
+    <div class="rules-accept" id="rulesAccept">
+      <button class="btn btn-solid" id="acceptRulesBtn" type="button">ACCETTO IL REGOLAMENTO</button>
+      <span class="rules-accept-note">Passo 2 di 4 &mdash; richiesto per sbloccare la selezione delle classi</span>
+    </div>
   </section>
 
   <section id="classi">
-    <div class="steps-bar" id="stepsBar">
-      <div class="step-item" data-step="age">
-        <span class="step-num">1</span>
-        <span class="step-label">Conferma 18+</span>
-      </div>
-      <div class="step-item" data-step="class">
-        <span class="step-num">2</span>
-        <span class="step-label">Scegli una classe</span>
-      </div>
-      <div class="step-item" data-step="join">
-        <span class="step-num">3</span>
-        <span class="step-label">Entra nel server</span>
-      </div>
-    </div>
-    <div class="age-gate">
-      <label class="age-gate-label">
-        <input type="checkbox" id="ageCheckbox">
-        <span class="age-gate-box"></span>
-        Confermo di avere almeno 18 anni
-      </label>
-      <span class="age-gate-note">Passo 1 di 3 &mdash; sblocca la selezione delle classi qui sotto</span>
-    </div>
     <div class="section-head">
       <h2>SELEZIONA LA TUA CLASSE</h2>
       <span class="classi-counter" id="classiCounter"><b>0</b>/5 equipaggiate</span>
@@ -1290,23 +1311,36 @@
       });
 
       var ageDone = isAgeConfirmed();
+      var rulesDone = isRulesAccepted();
       var classDone = selectedIds.length > 0;
       var stepAge = document.querySelector('.step-item[data-step="age"]');
+      var stepRules = document.querySelector('.step-item[data-step="rules"]');
       var stepClass = document.querySelector('.step-item[data-step="class"]');
       var stepJoin = document.querySelector('.step-item[data-step="join"]');
       if(stepAge){
         stepAge.classList.toggle("done", ageDone);
         stepAge.classList.toggle("active", !ageDone);
       }
+      if(stepRules){
+        stepRules.classList.toggle("done", rulesDone);
+        stepRules.classList.toggle("active", ageDone && !rulesDone);
+      }
       if(stepClass){
         stepClass.classList.toggle("done", classDone);
-        stepClass.classList.toggle("active", ageDone && !classDone);
+        stepClass.classList.toggle("active", ageDone && rulesDone && !classDone);
       }
       if(stepJoin){
-        stepJoin.classList.toggle("active", ageDone && classDone);
+        stepJoin.classList.toggle("active", ageDone && rulesDone && classDone);
       }
       var selectModeEl = document.getElementById("selectModeBtn");
       if(selectModeEl){ selectModeEl.setAttribute("aria-disabled", ageDone ? "false" : "true"); }
+
+      var acceptBtn = document.getElementById("acceptRulesBtn");
+      if(acceptBtn){
+        acceptBtn.classList.toggle("is-accepted", rulesDone);
+        acceptBtn.textContent = rulesDone ? "✓ REGOLAMENTO ACCETTATO" : "ACCETTO IL REGOLAMENTO";
+        acceptBtn.setAttribute("aria-disabled", ageDone ? "false" : "true");
+      }
     }
 
     var WIDGET_URL = "https://discord.com/widget?id=1220061478133039154&theme=dark";
@@ -1336,6 +1370,10 @@
         if(gate){ gate.scrollIntoView({ behavior: "smooth", block: "center" }); }
         if(ageCheckbox){ ageCheckbox.focus(); }
         showLockToast("Conferma di avere 18+ anni qui sopra per continuare ↑");
+      } else if(!isRulesAccepted()){
+        var rulesBox = document.getElementById("rulesAccept");
+        if(rulesBox){ rulesBox.scrollIntoView({ behavior: "smooth", block: "center" }); }
+        showLockToast("Accetta il regolamento qui sopra per continuare ↑");
       } else {
         var classiSection = document.getElementById("classi");
         if(classiSection){ classiSection.scrollIntoView({ behavior: "smooth", block: "start" }); }
@@ -1390,6 +1428,7 @@
     }
 
     var AGE_KEY = "retrobit-age-confirmed-v1";
+    var RULES_KEY = "retrobit-rules-accepted-v1";
     var ageCheckbox = document.getElementById("ageCheckbox");
 
     function isAgeConfirmed(){
@@ -1398,15 +1437,29 @@
     function setAgeConfirmed(v){
       try{ localStorage.setItem(AGE_KEY, v ? "1" : "0"); }catch(e){}
     }
+    function isRulesAccepted(){
+      try{ return localStorage.getItem(RULES_KEY) === "1"; }catch(e){ return false; }
+    }
+    function setRulesAccepted(v){
+      try{ localStorage.setItem(RULES_KEY, v ? "1" : "0"); }catch(e){}
+    }
 
     function applyAgeLock(){
       var confirmed = isAgeConfirmed();
+      var rulesOk = isRulesAccepted();
+      var canPickClass = confirmed && rulesOk;
+
+      if(!confirmed && rulesOk){
+        setRulesAccepted(false);
+        rulesOk = false;
+      }
+
       CLASS_IDS.forEach(function(id){
         var el = document.getElementById(id);
         if(!el) return;
-        el.setAttribute("aria-disabled", confirmed ? "false" : "true");
+        el.setAttribute("aria-disabled", canPickClass ? "false" : "true");
       });
-      if(!confirmed){
+      if(!canPickClass){
         CLASS_IDS.forEach(function(id){
           var el = document.getElementById(id);
           if(el){
@@ -1441,6 +1494,18 @@
       ageCheckbox.checked = isAgeConfirmed();
       ageCheckbox.addEventListener("change", function(){
         setAgeConfirmed(ageCheckbox.checked);
+        applyAgeLock();
+      });
+    }
+
+    var acceptRulesBtn = document.getElementById("acceptRulesBtn");
+    if(acceptRulesBtn){
+      acceptRulesBtn.addEventListener("click", function(){
+        if(!isAgeConfirmed()){
+          goToMissingStep();
+          return;
+        }
+        setRulesAccepted(!isRulesAccepted());
         applyAgeLock();
       });
     }
