@@ -7,4 +7,4 @@ Il server riflette esattamente questo modo di essere: si parla di retrogaming e 
 
 La parte che conta di più, però, è quella che non si scrive bene ma si sente: qui dentro nessuno guarda dall'alto in basso nessun altro, non importa quanto sai o da quanto ci sei. La gerarchia esiste, perché qualcuno deve tenere in piedi le cose, ma alla fine siamo in pochi, ci si conosce davvero, si viaggia sulla stessa frequenza, e col tempo è diventato più una famiglia che un server — senza bisogno di dirlo troppo apertamente.
 
-**[→ pronegate.github.io](https://pronegate.github.io/)**
+**[→ DISCORD]([https://pronegate.github.io/](https://pronegate.github.io/8RetroBit-Discord/))**
