@@ -289,6 +289,24 @@
   }
   .build-empty{ font-family: var(--font-mono); font-size: 0.82rem; color: var(--ink-faint); }
 
+  .quicknav-list{ display:flex; flex-direction:column; gap:2px; }
+  .quicknav-list a{
+    display:flex; align-items:center; gap:12px;
+    padding: 12px 10px;
+    font-family: var(--font-mono); font-size: 0.86rem; color: var(--ink-dim);
+    text-decoration:none; border-bottom: 1px solid var(--line);
+    transition: color .15s ease, padding-left .15s ease;
+  }
+  .quicknav-list a:last-child{ border-bottom:none; }
+  .quicknav-list a:hover{ color: var(--accent2); padding-left: 16px; }
+  .quicknav-icon{
+    width: 26px; height:26px; flex:none;
+    background: var(--bg);
+    border: 2px solid var(--line-strong);
+    display:grid; place-items:center;
+  }
+  .quicknav-list a:hover .quicknav-icon{ border-color: var(--accent2); }
+
   .synth-scene{
     position: relative;
     width: 100%;
@@ -779,14 +797,17 @@
           <span class="synth-tag">SYNTHCHILL &middot; LOFI MODE</span>
         </div>
         <div class="panel">
-        <h3>LA TUA BUILD</h3>
+        <h3>DOVE ANDARE</h3>
         <p style="color:var(--ink-dim); font-size:0.86rem; margin-bottom:16px;">
-          Le classi che scegli restano equipaggiate anche se torni domani.
+          Se non sai da dove iniziare, parti da qui.
         </p>
-        <div class="build-tags" id="aboutClassesSummary">
-          <span class="build-empty">Ancora nessuna classe equipaggiata</span>
+        <div class="quicknav-list">
+          <a href="#mappa"><span class="quicknav-icon"><svg class="pixel-icon" data-icon="pad" width="16" height="16" viewBox="0 0 8 8"></svg></span>Mappa del server</a>
+          <a href="#regolamento"><span class="quicknav-icon"><svg class="pixel-icon" data-icon="trophy" width="16" height="16" viewBox="0 0 8 8"></svg></span>Conferma di avere 18 anni</a>
+          <a href="#regolamento"><span class="quicknav-icon"><svg class="pixel-icon" data-icon="chip" width="16" height="16" viewBox="0 0 8 8"></svg></span>Regolamento</a>
+          <a href="#classi"><span class="quicknav-icon"><svg class="pixel-icon" data-icon="key" width="16" height="16" viewBox="0 0 8 8"></svg></span>Seleziona la tua classe</a>
+          <a href="#join"><span class="quicknav-icon"><svg class="pixel-icon" data-icon="speech" width="16" height="16" viewBox="0 0 8 8"></svg></span>Unisciti al server</a>
         </div>
-        <a class="btn btn-sm" id="buildPanelLink" style="margin-top:16px;" href="#classi">SELEZIONA LA TUA CLASSE &rarr;</a>
         </div>
       </div>
     </div>
@@ -1280,17 +1301,6 @@
         var h3 = el ? el.querySelector("h3") : null;
         return h3 ? h3.textContent : id;
       });
-
-      var buildEl = document.getElementById("aboutClassesSummary");
-      if(buildEl){
-        if(names.length === 0){
-          buildEl.innerHTML = '<span class="build-empty">Ancora nessuna classe equipaggiata</span>';
-        } else {
-          buildEl.innerHTML = names.map(function(n){
-            return '<span class="build-tag">' + n + '</span>';
-          }).join("");
-        }
-      }
 
       var joinEl = document.getElementById("joinClassesSummary");
       if(joinEl){
